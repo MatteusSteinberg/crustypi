@@ -1,0 +1,13 @@
+[Unit]
+Description=Crustypi pull service
+After=network-online.target
+
+[Service]
+ExecStart=/usr/bin/service.sh
+Restart=on-failure
+RestartSec=20s
+StartLimitInterval=60s
+StartLimitBurst=3
+
+[Install]
+WantedBy=multi-user.target

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cd ~/application/crustypi/
 
 changed=0
