@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ~/application/crustypi/
+cd /home/crustypi/application/crustypi/
 
 changed=0
 git remote update && git status -uno | grep -q 'Your branch is behind' && changed=1
