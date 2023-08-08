@@ -10,6 +10,6 @@ while (True):
     # Current pressure in Millibars
     pressure = sense.get_pressure()
 
-    print("Humidity: " + humidity + "%")
-    print("Temperacture: " + temp + "°C")
-    print("Pressure: " + pressure + " mb")
+    print(f"Humidity: {humidity}%")
+    print(f"Temperature: {humidity}°C")
+    print(f"Pressure: {pressure} mb")
