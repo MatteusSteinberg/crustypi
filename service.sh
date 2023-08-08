@@ -7,6 +7,9 @@ git remote update && git status -uno | grep -q 'Your branch is behind' && change
 if [ $changed = 1 ]; then
     # Changes on github
     git pull
+    echo "Restarting crustypi..."
+    pm2 restart crustypi
+    echo "Crustypi restarted!"
 else
     echo "Up-to-date"
 fi

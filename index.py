@@ -1,1 +1,2 @@
-print("Sejt!")
+while (True):
+    print("Sejt!")
