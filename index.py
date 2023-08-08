@@ -1,7 +1,9 @@
 from sense_hat import SenseHat
+from datetime import datetime
+
+sense = SenseHat()
 
 while (True):
-    sense = SenseHat()
 
     # Percentage of relative humidity
     humidity = sense.get_humidity()
@@ -9,6 +11,11 @@ while (True):
     temp = sense.get_temperature()
     # Current pressure in Millibars
     pressure = sense.get_pressure()
+
+    now = datetime.now()
+    # dd/mm/YY H:M:S
+    dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+    print(f"Timestamp: {dt_string}")
 
     print(f"Humidity: {humidity}%")
     print(f"Temperature: {humidity}°C")
