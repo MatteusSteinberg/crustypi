@@ -15,11 +15,6 @@ gitpull.service and service.timer is enabled on the pi using `systemctl start 'f
 
 ## Process manager
 
-Install pman: https://pypi.org/project/pman/
-* `pip install pman`
-* `sudo apt install virtualenv virtualenvwrapper` <br />
-Add the following lines to .bashrc
-* `export WORKON_HOME=~/python-envs`
-* `source /usr/share/virtualenvwrapper/virtualenvwrapper.sh` <br />
-And create the virtual python environment
-* `mkvirtualenv --python=python3 python_env`
+Install pm2
+* `apt update && apt install sudo curl && curl -sL https://raw.githubusercontent.com/Unitech/pm2/master/packager/setup.deb.sh | sudo -E bash -`
+Might need to restart the pi afterwards
