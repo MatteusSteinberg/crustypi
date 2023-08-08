@@ -4,6 +4,7 @@ After=network-online.target
 
 [Service]
 ExecStart=/usr/bin/service.sh
+User=crustypi
 Restart=on-failure
 RestartSec=20s
 StartLimitInterval=60s
