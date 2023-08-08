@@ -14,7 +14,7 @@ while (True):
 
     now = datetime.now()
     # dd/mm/YY H:M:S
-    dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+    dt_string = now.strftime("%Y-%m-%dT%H:%M:%S.000Z")
     print(f"Timestamp: {dt_string}")
 
     print(f"Humidity: {humidity}%")
