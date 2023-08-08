@@ -24,5 +24,5 @@ while (True):
     print(f"Timestamp: {dt_string}")
 
     print(f"Humidity: {humidity}%")
-    print(f"Temperature: {humidity}°C")
+    print(f"Temperature: {temp}°C")
     print(f"Pressure: {pressure} mb")

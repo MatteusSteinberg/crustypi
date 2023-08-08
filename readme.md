@@ -24,3 +24,9 @@ Install pm2 globally
 And start the process up 
 * `pm2 start index.py --name crustypi` <br />
 Now we can restart our process whenever we want with the new updates
+
+### Process Database
+A "small" database on the raspberry containing recent data <br />
+The thought is to wipe the data on each post of data from the pi, on occasions that the raspberry pi is not connected to the internet it will store the data without wiping it until it's connected to the internet again.
+
+## API
