@@ -3,7 +3,15 @@ from datetime import datetime
 
 sense = SenseHat()
 
+lastTime = ""
+
 while (True):
+    now = datetime.now()
+    dt_string = now.strftime("%Y-%m-%dT%H:%M:%S.000Z")
+    # Avoid duplicate data sets - No reason to log between milliseconds
+    if lastTime == dt_string:
+        continue
+    lastTime = dt_string
 
     # Percentage of relative humidity
     humidity = sense.get_humidity()
@@ -12,9 +20,7 @@ while (True):
     # Current pressure in Millibars
     pressure = sense.get_pressure()
 
-    now = datetime.now()
     # dd/mm/YY H:M:S
-    dt_string = now.strftime("%Y-%m-%dT%H:%M:%S.000Z")
     print(f"Timestamp: {dt_string}")
 
     print(f"Humidity: {humidity}%")
