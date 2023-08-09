@@ -13,6 +13,7 @@ def get_data():
     db = get_database()
     docs = db.all()
 
+    db.close()
     return docs
 
 def delete_data():
