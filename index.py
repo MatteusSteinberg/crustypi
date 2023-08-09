@@ -28,11 +28,11 @@ while (True):
     print(f"Temperature: {temp}°C")
     print(f"Pressure: {pressure} mb")
 
-    # insert_data({
-    #     "timestamp": dt_string,
-    #     "humidity": humidity,
-    #     "temperature": temp,
-    #     "pressure": pressure
-    # })
+    insert_data({
+        "timestamp": dt_string,
+        "humidity": humidity,
+        "temperature": temp,
+        "pressure": pressure
+    })
 
     
