@@ -23,10 +23,15 @@ Install pm2 globally
 * `sudo npm install pm2 --global` <br />
 And start the process up 
 * `pm2 start index.py --name crustypi` <br />
-Now we can restart our process whenever we want with the new updates
+Now we can restart our process whenever we want with the new updates <br />
+#### *Automate start process by*
+`sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u crustypi --hp /home/crustypi` <br />
+Following command is provided by doing: `pm2 startup`
 
 ### Process Database
 A "small" database on the raspberry containing recent data <br />
-The thought is to wipe the data on each post of data from the pi, on occasions that the raspberry pi is not connected to the internet it will store the data without wiping it until it's connected to the internet again.
+The thought is to wipe the data on each post of data from the pi, on occasions that the raspberry pi is not connected to the internet it will store the data without wiping it until it's connected to the internet again. <br />
+
+The databse is a "Tinydb" which is install simply by doing `pip install tinydb`, the code takes care of the rest.
 
 ## API
