@@ -6,9 +6,6 @@ require 'json'
 
 Mongoid.load!(File.join(File.dirname(__FILE__), 'config', 'mongoid.yml'))
 
-set :server, 'thin'
-set :sockets, []
-
 class Measures
   include Mongoid::Document
 
