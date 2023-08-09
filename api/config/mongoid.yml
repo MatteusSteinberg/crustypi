@@ -1,8 +1,6 @@
 development:
   clients:
     default:
-      database: crustypi
-      hosts:
-        - localhost:27017
+      uri: mongodb+srv://mester:OnYOJFSTyb5gpBbz@crustypi.0tpvffm.mongodb.net/?retryWrites=true&w=majority
       options:
-        server_selection_timeout: 1
+        server_selection_timeout: 5
