@@ -23,7 +23,10 @@ Install pm2 globally
 * `sudo npm install pm2 --global` <br />
 And start the process up 
 * `pm2 start index.py --name crustypi` <br />
-Now we can restart our process whenever we want with the new updates
+Now we can restart our process whenever we want with the new updates <br />
+#### *Automate start process by*
+`sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u crustypi --hp /home/crustypi` <br />
+Following command is provided by doing: `pm2 startup`
 
 ### Process Database
 A "small" database on the raspberry containing recent data <br />
