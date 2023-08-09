@@ -1,19 +1,23 @@
-from database import get_mongo_client
-from schema import validation_rule
-
-dbName = 'crustypi'
-collectionName = 'airdata'
+from database import get_database
+from database import get_database
 
 def insert_data(data: dict[str, any]):
-    client = get_mongo_client()
-    db = client[dbName]
+    db = get_database()
 
-    if not collectionName in db.list_collection_names():
-        collection = db.create_collection(collectionName, validation_rule)
-    else:
-        collection = db[collectionName]
+    db.insert(data)
 
+    db.close()
+    return
 
-    collection.insert_one(data)
-    client.close()
+def get_data():
+    db = get_database()
+    docs = db.all()
+
+    return docs
+
+def delete_data():
+    db = get_database()
+    db.drop_tables()
+
+    db.close()
     return

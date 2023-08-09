@@ -1,8 +1,11 @@
-from pymongo import MongoClient
+from tinydb import TinyDB
+from os import path
 
-CONNECTION_STRING = "mongodb+srv://127.0.0.1:27017/"
+db_file = "db.json"
 
-def get_mongo_client():
-   client = MongoClient(CONNECTION_STRING)
+def get_database():
+   if not path.isfile(db_file):
+      open(db_file, "w")
+   db = TinyDB(db_file)
 
-   return client
+   return db

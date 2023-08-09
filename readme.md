@@ -30,6 +30,8 @@ Following command is provided by doing: `pm2 startup`
 
 ### Process Database
 A "small" database on the raspberry containing recent data <br />
-The thought is to wipe the data on each post of data from the pi, on occasions that the raspberry pi is not connected to the internet it will store the data without wiping it until it's connected to the internet again.
+The thought is to wipe the data on each post of data from the pi, on occasions that the raspberry pi is not connected to the internet it will store the data without wiping it until it's connected to the internet again. <br />
+
+The databse is a "Tinydb" which is install simply by doing `pip install tinydb`, the code takes care of the rest.
 
 ## API
