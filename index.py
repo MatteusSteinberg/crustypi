@@ -1,6 +1,6 @@
 from sense_hat import SenseHat
 from datetime import datetime
-from insertion import insert_data
+from insertion import insert_data, delete_data
 
 sense = SenseHat()
 
@@ -28,6 +28,7 @@ while (True):
     print(f"Temperature: {temp}°C")
     print(f"Pressure: {pressure} mb")
 
+    delete_data()
     insert_data({
         "timestamp": dt_string,
         "humidity": humidity,
