@@ -15,13 +15,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   await runMiddleware(req, res, cors)
   await connect()
   if (req.method === 'POST') {
-    
-    // Process a POST request
+    if (req.headers.authorization !== 'Bearer ' + process.env.ALLOW_KEY) {
+      res.status(401).json({ error: 'Unauthorized' })
+      return
+    }
     const newMeseurement = await measurementsModel.insertMany(req.body)
+
     res.status(201).json(newMeseurement)
   }
   if (req.method === 'GET') {
-    // Process a GET request
+
     res.status(200).json({ name: 'John Doe' })
   }
 }
