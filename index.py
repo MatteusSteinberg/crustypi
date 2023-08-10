@@ -28,7 +28,7 @@ while (True):
     pressure = sense.get_pressure()
 
     i = GPIO.input(10)
-    print(f"_________________________")
+    print(f"__________________________________________")
     # dd/mm/YY H:M:S
     print(f"Timestamp: {dt_string}")
 
