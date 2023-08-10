@@ -15,6 +15,7 @@ def capture_video(duration: int, filename: str):
     if not path.exists(folder):
       makedirs(folder)
 
+    print("Started recording video")
     encoder = H264Encoder(10000000)
     output = FfmpegOutput(f'{filename}.mp4', audio=True)
 
