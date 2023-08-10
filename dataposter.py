@@ -8,6 +8,9 @@ token = config(('TOKEN'))
 
 while True:
     time.sleep(10)
+    if token is str and token.__len__() > 1:
+        print("No token yet.")
+        continue
 
     docs = get_data()
     delete_data()
