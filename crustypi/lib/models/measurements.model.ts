@@ -12,6 +12,9 @@ const measurementSchema = new mongoose.Schema({
   },
   timestamp: {
     type: Date
+  },
+  detectedMotion: {
+    type: Boolean
   }
 });
 const Measurement = mongoose.models.Measurement || mongoose.model('Measurement', measurementSchema);
