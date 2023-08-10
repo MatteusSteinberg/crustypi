@@ -28,18 +28,13 @@ while (True):
     pressure = sense.get_pressure()
 
     i = GPIO.input(10)
-    if i == 1:
-        print("Motion detected!")
-    if i == 0:
-        print("No motion detected.")
 
     # dd/mm/YY H:M:S
-    if False:
-        print(f"Timestamp: {dt_string}")
+    print(f"Timestamp: {dt_string}")
 
-        print(f"Humidity: {humidity}%")
-        print(f"Temperature: {temp}°C")
-        print(f"Pressure: {pressure} mb")
+    print(f"Humidity: {humidity}%")
+    print(f"Temperature: {temp}°C")
+    print(f"Pressure: {pressure} mb")
 
     
 
@@ -50,7 +45,8 @@ while (True):
         "timestamp": dt_string,
         "humidity": humidity,
         "temperature": temp,
-        "pressure": pressure
+        "pressure": pressure,
+        "detectedMotion": i == 1
     })
 
     
