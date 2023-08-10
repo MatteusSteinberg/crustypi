@@ -4,7 +4,7 @@ from insertion import get_data, delete_data
 from decouple import config
 
 apiUrl = config('API')
-token = config(('TOKEN'))
+token = config('TOKEN')
 
 while True:
     time.sleep(10)

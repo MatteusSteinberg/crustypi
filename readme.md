@@ -23,7 +23,7 @@ Install pm2 globally
 * `sudo npm install pm2 --global` <br />
 And start the processes up 
 * `pm2 start index.py --name crustypi` <br />
-* `pm2 start dataposer.py --name crustypi-poster` <br />
+* `pm2 start dataposter.py --name crustypi-poster` <br />
 Now we can restart our processes whenever we want with the new updates <br />
 #### *Automate start process by*
 `sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u crustypi --hp /home/crustypi` <br />
