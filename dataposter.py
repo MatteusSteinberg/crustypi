@@ -18,5 +18,10 @@ while True:
     url = apiUrl + '/api/measurements'
     jsonData = docs
 
-    post(url, json=docs, headers={'Authorization': f'bearer {token}'})
-    print("Data sent succesfully!")
+    result = post(url, json=docs, headers={'Authorization': f'bearer {token}'})
+    
+    print(f"Data sent to {apiUrl} succesfully!")
+    print(f"Token={token}")
+    print(f"Data={docs}")
+
+    print(f"{result.status_code}")
