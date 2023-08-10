@@ -17,5 +17,8 @@ const measurementSchema = new mongoose.Schema({
     type: Boolean
   }
 });
+
+measurementSchema.index({ timestamp: -1 });
+
 const Measurement = mongoose.models.Measurement || mongoose.model('Measurement', measurementSchema);
 export default Measurement;
