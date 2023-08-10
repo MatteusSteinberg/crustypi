@@ -10,13 +10,13 @@ picam2.configure(video_config)
 
 folder = 'videos'
 
-def capture_video(duration: int, timestamp: str):
+def capture_video(duration: int, filename: str):
 
     if not path.exists(folder):
       makedirs(folder)
 
     encoder = H264Encoder(10000000)
-    output = FfmpegOutput(f'{folder}/{timestamp}.mp4', audio=True)
+    output = FfmpegOutput(f'{filename}.mp4', audio=True)
 
     picam2.start_recording(encoder, output)
     time.sleep(duration)
