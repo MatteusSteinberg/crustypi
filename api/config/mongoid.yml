@@ -1,6 +1,8 @@
+<% require 'dotenv/load' %>
+
 development:
   clients:
     default:
-      uri: mongodb+srv://mester:OnYOJFSTyb5gpBbz@crustypi.0tpvffm.mongodb.net/?retryWrites=true&w=majority
+      uri: <%= ENV['MONGODB_URI'] %>
       options:
         server_selection_timeout: 5
