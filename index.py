@@ -47,9 +47,6 @@ while (True):
         print("No motion detected")
         currentlyDetecting = False
 
-    # To be removed
-    delete_data()
-
     insert_data({
         "timestamp": dt_string,
         "humidity": humidity,
