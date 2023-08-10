@@ -1,6 +1,12 @@
 from sense_hat import SenseHat
 from datetime import datetime
 from insertion import insert_data, delete_data
+import RPi.GPIO as GPIO
+
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BOARD)
+# OUTPUT PIN FOR PIR SENSOR
+GPIO.setup(10, GPIO.IN)
 
 sense = SenseHat()
 
@@ -21,12 +27,21 @@ while (True):
     # Current pressure in Millibars
     pressure = sense.get_pressure()
 
-    # dd/mm/YY H:M:S
-    print(f"Timestamp: {dt_string}")
+    i = GPIO.input(11)
+    if i == 1:
+        print("Motion detected!")
+    if i == 0:
+        print("No motion detected.")
 
-    print(f"Humidity: {humidity}%")
-    print(f"Temperature: {temp}°C")
-    print(f"Pressure: {pressure} mb")
+    # dd/mm/YY H:M:S
+    if False:
+        print(f"Timestamp: {dt_string}")
+
+        print(f"Humidity: {humidity}%")
+        print(f"Temperature: {temp}°C")
+        print(f"Pressure: {pressure} mb")
+
+    
 
     # To be removed
     delete_data()
