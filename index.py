@@ -28,7 +28,9 @@ while (True):
     print(f"Temperature: {temp}°C")
     print(f"Pressure: {pressure} mb")
 
+    # To be removed
     delete_data()
+
     insert_data({
         "timestamp": dt_string,
         "humidity": humidity,
