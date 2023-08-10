@@ -4,6 +4,7 @@ from insertion import get_data, delete_data
 from decouple import config
 
 apiUrl = config('API')
+token = config(('TOKEN'))
 
 while True:
     time.sleep(10)
@@ -11,7 +12,7 @@ while True:
     docs = get_data()
     delete_data()
 
-    url = apiUrl + '/measures'
+    url = apiUrl + '/api/measurements'
     jsonData = docs
 
-    post(url, docs)
+    post(url, docs, headers={'Authorization': f'bearer {token}'})

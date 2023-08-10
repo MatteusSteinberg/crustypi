@@ -43,7 +43,7 @@ while (True):
     motionDetected = i == 1
 
     if motionDetected and not currentlyDetecting:
-        Thread(task=capture_video, args=(3, 'test'))
+        Thread(target=capture_video, args=(3, 'test'))
 
     if motionDetected:
         print("Motion detected")
