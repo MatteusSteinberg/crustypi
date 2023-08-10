@@ -4,10 +4,10 @@ require 'sinatra/base'
 require 'mongoid'
 require 'json'
 
-Mongoid.load!(File.join(File.dirname(__FILE__), 'config', 'mongoid.yml'))
-
 class MyApp < Sinatra::Base
   class Measures
+    Mongoid.load!(File.join(File.dirname(__FILE__), 'config', 'mongoid.yml'))
+
     include Mongoid::Document
 
     field :temperature, type: Integer
