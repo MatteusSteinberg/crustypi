@@ -19,3 +19,4 @@ while True:
     jsonData = docs
 
     post(url, json=docs, headers={'Authorization': f'bearer {token}'})
+    print("Data sent succesfully!")
