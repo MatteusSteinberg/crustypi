@@ -2,20 +2,16 @@ import mongoose from 'mongoose';
 
 const measurementSchema = new mongoose.Schema({
   temperature: {
-    type: Number,
-    required: true
+    type: Number
   },
   humidity: {
-    type: Number,
-    required: true
+    type: Number
   },
   pressure: {
-    type: Number,
-    required: true
+    type: Number
   },
   timestamp: {
-    type: Date,
-    required: true
+    type: Date
   }
 });
 const Measurement = mongoose.models.Measurement || mongoose.model('Measurement', measurementSchema);
