@@ -27,7 +27,7 @@ while (True):
     # Current pressure in Millibars
     pressure = sense.get_pressure()
 
-    i = GPIO.input(11)
+    i = GPIO.input(10)
     if i == 1:
         print("Motion detected!")
     if i == 0:
