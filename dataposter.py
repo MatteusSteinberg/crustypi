@@ -3,9 +3,15 @@ from requests import post
 from insertion import get_data, delete_data
 from decouple import config
 from datetime import datetime
+from threading import Thread
 
 apiUrl = config('API')
 token = config('TOKEN')
+
+def send_data(url, json, dt_string):
+    result = post(url, json=json, headers={'Authorization': f'Bearer {token}'})
+    print(f"Timestamp: {dt_string}")
+    print(f"Data sent to {apiUrl}, status code: {result.status_code}")
 
 while True:
     time.sleep(10)
@@ -21,7 +27,4 @@ while True:
     url = apiUrl + '/api/measurements'
     jsonData = docs
 
-    result = post(url, json=docs, headers={'Authorization': f'Bearer {token}'})
-    
-    print(f"Timestamp: {dt_string}")
-    print(f"Data sent to {apiUrl}, status code: {result.status_code}")
+    Thread(target=send_data, args=(url, docs, dt_string)).start()
