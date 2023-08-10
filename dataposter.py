@@ -18,4 +18,4 @@ while True:
     url = apiUrl + '/api/measurements'
     jsonData = docs
 
-    post(url, docs, headers={'Authorization': f'bearer {token}'})
+    post(url, json=docs, headers={'Authorization': f'bearer {token}'})
