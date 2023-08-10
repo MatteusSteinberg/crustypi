@@ -3,8 +3,8 @@ from datetime import datetime
 from insertion import insert_data, delete_data
 import RPi.GPIO as GPIO
 
-GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
+GPIO.setwarnings(False)
 # OUTPUT PIN FOR PIR SENSOR
 GPIO.setup(10, GPIO.IN)
 
