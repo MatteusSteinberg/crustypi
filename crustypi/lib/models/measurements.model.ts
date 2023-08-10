@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
+import {Schema, model} from 'mongoose';
 
-const measurementSchema = new mongoose.Schema({
+const measurementSchema = new Schema({
   temperature: {
     type: Number
   },
@@ -17,5 +17,8 @@ const measurementSchema = new mongoose.Schema({
     type: Boolean
   }
 });
-const Measurement = mongoose.models.Measurement || mongoose.model('Measurement', measurementSchema);
+
+measurementSchema.index({ timestamp: -1 });
+
+const Measurement = model('Measurement', measurementSchema);
 export default Measurement;
