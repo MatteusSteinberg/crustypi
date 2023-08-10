@@ -9,6 +9,7 @@ if [ $changed = 1 ]; then
     git pull
     echo "Restarting crustypi..."
     pm2 restart crustypi
+    pm2 restart crustypi-poster
     echo "Crustypi restarted!"
 else
     echo "Up-to-date"

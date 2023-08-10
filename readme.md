@@ -21,9 +21,10 @@ Install node version manager - includes node package manager
 * `curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash` <br />
 Install pm2 globally
 * `sudo npm install pm2 --global` <br />
-And start the process up 
+And start the processes up 
 * `pm2 start index.py --name crustypi` <br />
-Now we can restart our process whenever we want with the new updates <br />
+* `pm2 start dataposter.py --name crustypi-poster` <br />
+Now we can restart our processes whenever we want with the new updates <br />
 #### *Automate start process by*
 `sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u crustypi --hp /home/crustypi` <br />
 Following command is provided by doing: `pm2 startup`

@@ -2,8 +2,6 @@ from sense_hat import SenseHat
 from datetime import datetime
 from insertion import insert_data, delete_data
 import RPi.GPIO as GPIO
-from threading import Thread
-from camera import capture_video
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
@@ -41,9 +39,6 @@ while (True):
     print(f"Pressure: {pressure} mb")
 
     motionDetected = i == 1
-
-    if motionDetected and not currentlyDetecting:
-        Thread(task=capture_video, args=(3, 'test'))
 
     if motionDetected:
         print("Motion detected")
