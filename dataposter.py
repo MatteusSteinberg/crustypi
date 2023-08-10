@@ -2,7 +2,7 @@ import time
 from requests import post
 from insertion import get_data, delete_data
 from decouple import config
-import datetime
+from datetime import datetime
 
 apiUrl = config('API')
 token = config('TOKEN')
