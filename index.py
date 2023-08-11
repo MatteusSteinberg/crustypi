@@ -1,6 +1,6 @@
 from sense_hat import SenseHat
 from datetime import datetime
-from insertion import insert_data, delete_data
+from insertion import insert_data, create_table
 import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BOARD)
@@ -13,6 +13,8 @@ sense = SenseHat()
 lastTime = ""
 
 currentlyDetecting = False
+
+create_table()
 
 while (True):
     now = datetime.now()
