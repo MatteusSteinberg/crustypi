@@ -10,5 +10,8 @@ def arduino_board():
     print("Arduino connection made!")
 
     while True:
+        analog_0 = board.get_pin('a:0:i')
+        digital_7 = board.get_pin('dd:7:i')
+
         time.sleep(10)
         print("Arduino loop")
