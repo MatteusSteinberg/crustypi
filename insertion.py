@@ -5,7 +5,7 @@ tableName = 'sensordata'
 def create_table():
     con = get_database_connection()
     cursor = con.cursor()
-    count = cursor.execute(f"SELECT name FROM sqlite_master WHERE type='table' AND name='{tableName}'").rowcount
+    count = cursor.execute(f"SELECT name FROM sqlite_master WHERE type='table' AND name='{tableName}'").fetchall().__len__()
 
     if count == 0:
         cursor.execute(f'CREATE TABLE {tableName}(timestamp, humidity, temperature, pressure, detectedMotion)')
@@ -65,3 +65,7 @@ def delete_data():
     cursor.close()
     con.close()
     return
+
+create_table()
+
+get_data()
