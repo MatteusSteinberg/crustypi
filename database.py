@@ -1,11 +1,9 @@
-from tinydb import TinyDB
 from os import path
+import sqlite3
 
 db_file = "db.json"
 
-def get_database():
-   if not path.isfile(db_file):
-      open(db_file, "w")
-   db = TinyDB(db_file)
+def get_database_connection():
+   con = sqlite3.connect("sqlite.db")
 
-   return db
+   return con
