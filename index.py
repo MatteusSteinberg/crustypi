@@ -2,6 +2,7 @@ from sense_hat import SenseHat
 from datetime import datetime
 from insertion import insert_data, create_table
 import RPi.GPIO as GPIO
+from arduino import arduino_board
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
@@ -15,6 +16,8 @@ lastTime = ""
 currentlyDetecting = False
 
 create_table()
+
+arduino_board()
 
 while (True):
     now = datetime.now()
