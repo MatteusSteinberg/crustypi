@@ -11,7 +11,7 @@ def arduino_board():
 
     while True:
         analog_0 = board.get_pin('a:0:i')
-        digital_7 = board.get_pin('dd:7:i')
+        digital_7 = board.get_pin('d:7:i')
 
         time.sleep(10)
         print("Arduino loop")
