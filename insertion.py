@@ -9,6 +9,7 @@ def create_table():
 
     if count == 0:
         cursor.execute(f'CREATE TABLE {tableName}(timestamp, humidity, temperature, pressure, detectedMotion)')
+        con.commit()
 
     cursor.close()
     con.close()
