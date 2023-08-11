@@ -3,6 +3,7 @@ from datetime import datetime
 from insertion import insert_data, create_table
 import RPi.GPIO as GPIO
 from arduino import arduino_board
+from threading import Thread
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
@@ -17,7 +18,8 @@ currentlyDetecting = False
 
 create_table()
 
-arduino_board()
+arduinoThread = Thread(target=arduino_board)
+arduinoThread.start()
 
 while (True):
     now = datetime.now()
