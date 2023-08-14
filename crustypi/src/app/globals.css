@@ -110,8 +110,10 @@ a {
 .header {
   width: 100vw;
   height: 5rem;
-  background-color: white;
-  text-align: center;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .container {
