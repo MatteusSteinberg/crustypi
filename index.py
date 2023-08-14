@@ -18,8 +18,7 @@ currentlyDetecting = False
 
 create_table()
 
-arduinoThread = Thread(target=arduino_board)
-arduinoThread.start()
+arduino = arduino_board()
 
 while (True):
     now = datetime.now()
@@ -44,13 +43,16 @@ while (True):
         currentlyDetecting = True
     else:
         currentlyDetecting = False
+    
+    print(f"arduino.analogGasSensorValue: {arduino.analogGasSensorValue}")
 
     insert_data({
         "timestamp": dt_string,
         "humidity": humidity,
         "temperature": temp,
         "pressure": pressure,
-        "detectedMotion": motionDetected
+        "detectedMotion": motionDetected,
+        "gas": arduino.analogGasSensorValue
     })
 
     
