@@ -6,14 +6,14 @@ portname = "/dev/ttyACM1"
 
 # https://pypi.org/project/pyFirmata/
 
-lastTime = ""
-
 def arduino_board():
     board = Arduino(portname)
     print("Arduino connection made!")
 
-    analog_0 = board.get_pin('a:0:i')
-    digital_7 = board.get_pin('d:7:i')
+    # analog_0 = board.get_pin('a:0:i')
+    # digital_7 = board.get_pin('d:7:i')
+
+    lastTime = ""
 
     it = util.Iterator(board)
     it.start()
