@@ -48,7 +48,8 @@ def get_data():
             'humidity': row[1],
             'temperature': row[2],
             'pressure': row[3],
-            'detectedMotion': bool(row[4])
+            'detectedMotion': bool(row[4]),
+            'gas': row[5]
         }
         result.append(data_dict)
 
