@@ -6,6 +6,8 @@ portname = "/dev/ttyACM1"
 
 # https://pypi.org/project/pyFirmata/
 
+lastTime = ""
+
 def arduino_board():
     board = Arduino(portname)
     print("Arduino connection made!")
@@ -20,9 +22,11 @@ def arduino_board():
     while True:
         now = datetime.now()
         dt_string = now.strftime("%Y-%m-%dT%H:%M:%S.000Z")
+        if lastTime == dt_string:
+            continue
+        lastTime = dt_string
         print(dt_string)
 
         print(f"board.analog[0].read(): {board.analog[0].read()}")
 
-        time.sleep(10)
         print("Arduino loop")
