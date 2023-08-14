@@ -8,7 +8,7 @@ def create_table():
     count = cursor.execute(f"SELECT name FROM sqlite_master WHERE type='table' AND name='{tableName}'").fetchall().__len__()
 
     if count == 0:
-        cursor.execute(f'CREATE TABLE {tableName}(timestamp, humidity, temperature, pressure, detectedMotion)')
+        cursor.execute(f'CREATE TABLE {tableName}(timestamp, humidity, temperature, pressure, detectedMotion, gas)')
         con.commit()
 
     cursor.close()
@@ -19,12 +19,13 @@ def insert_data(data: dict[str, any]):
     con = get_database_connection()
     cursor = con.cursor()
 
-    cursor.execute(f"INSERT INTO {tableName} VALUES (?, ?, ?, ?, ?)", (
+    cursor.execute(f"INSERT INTO {tableName} VALUES (?, ?, ?, ?, ?, ?)", (
         data['timestamp'],
         data['humidity'],
         data['temperature'],
         data['pressure'],
-        int(data['detectedMotion'])
+        int(data['detectedMotion']),
+        data['gas']
     ))
 
     # Commits changes to database
