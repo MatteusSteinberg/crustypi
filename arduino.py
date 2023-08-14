@@ -18,7 +18,6 @@ def arduino_board():
     it = util.Iterator(board)
     it.start()
     board.analog[0].enable_reporting()
-    board.digital[7].enable_reporting()
 
     while True:
         now = datetime.now()
