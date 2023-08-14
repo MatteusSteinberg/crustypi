@@ -46,7 +46,7 @@ while (True):
     arduinoSensors = arduino.getSensorValues()
     analogGasSensorValue = arduinoSensors['analogGasSensorValue']
 
-    print(f"arduino.analogGasSensorValue: {analogGasSensorValue}")
+    print(f"arduino.analogGasSensorValue: {analogGasSensorValue} -> {analogGasSensorValue * 10}ppm")
 
     insert_data({
         "timestamp": dt_string,
