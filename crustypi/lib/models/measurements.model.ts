@@ -15,6 +15,9 @@ const measurementSchema = new Schema({
   },
   detectedMotion: {
     type: Boolean
+  },
+  gas: {
+    type: Number
   }
 });
 
