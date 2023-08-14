@@ -3,7 +3,6 @@ from datetime import datetime
 from insertion import insert_data, create_table
 import RPi.GPIO as GPIO
 from arduino import arduino_board
-from threading import Thread
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
@@ -44,7 +43,10 @@ while (True):
     else:
         currentlyDetecting = False
     
-    print(f"arduino.analogGasSensorValue: {arduino.analogGasSensorValue}")
+    arduinoSensors = arduino.getSensorValues()
+    analogGasSensorValue = arduinoSensors['analogGasSensorValue']
+
+    print(f"arduino.analogGasSensorValue: {analogGasSensorValue}")
 
     insert_data({
         "timestamp": dt_string,
@@ -52,7 +54,7 @@ while (True):
         "temperature": temp,
         "pressure": pressure,
         "detectedMotion": motionDetected,
-        "gas": arduino.analogGasSensorValue
+        "gas": analogGasSensorValue
     })
 
     
