@@ -121,7 +121,7 @@ a {
 
 .charts {
   display: grid;
-  height: 250px;
+  height: 23rem;
   grid-template-columns: 1fr 1fr;
   justify-items: center;
   row-gap: 5rem;

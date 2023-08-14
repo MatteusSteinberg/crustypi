@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -13,6 +13,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar, Line } from 'react-chartjs-2';
+import moment from 'moment';
 
 ChartJS.register(
   CategoryScale,
@@ -34,27 +35,74 @@ const options = {
   },
 };
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-
-const data = {
-  labels,
-  datasets: [
-    {
-      label: 'Dataset 1',
-      data: labels.map(() => Math.floor(Math.random() * 1000)),
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    },
-    {
-      label: 'Dataset 2',
-      data: labels.map(() => Math.floor(Math.random() * 1000)),
-      borderColor: 'rgb(53, 162, 235)',
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
-    },
-  ],
-};
-
 export default function Home() {
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      getData()
+    }, 10000);
+    return () => clearInterval(interval);
+  }, [])
+  
+  const getData = async () => {
+    await fetch('/api/measurements?groupBy=hour')
+      .then(res => res.json())
+      .then(data => setData(data))
+      .catch(err => console.log(err))
+  }
+
+  const labels = data.map((item: any) => moment(item._id).format('ddd, hA'));
+
+  console.log(data)
+
+  const temperature = {
+    labels,
+    datasets: [
+      {
+        label: 'Temperature',
+        data: data.map((item: any) => item.temperature),
+        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      }
+    ],
+  };
+
+  const humidity = {
+    labels,
+    datasets: [
+      {
+        label: 'Humidity',
+        data: data.map((item: any) => item.humidity),
+        borderColor: 'rgb(53, 162, 235)',
+        backgroundColor: 'rgba(53, 162, 235, 0.5)',
+      },
+    ],
+  }
+
+  const pressure = {
+    labels,
+    datasets: [
+      {
+        label: 'Pressure',
+        data: data.map((item: any) => item.pressure),
+        borderColor: 'rgb(75, 192, 192)',
+        backgroundColor: 'rgba(75, 192, 192, 0.5)',
+      },
+    ],
+  }
+
+  const gas = {
+    labels,
+    datasets: [
+      {
+        label: 'Gas',
+        data: data.map((item: any) => item.gas),
+        borderColor: 'rgb(255, 205, 86)',
+        backgroundColor: 'rgba(255, 205, 86, 0.5)',
+      },
+    ],
+  }
 
   return (
     <main>
@@ -64,10 +112,10 @@ export default function Home() {
         </div>
         <div className='content'>
           <div className='charts'>
-            <Bar options={options} data={data} />
-            <Line options={options} data={data} />
-            <Bar options={options} data={data} />
-            <Bar options={options} data={data} />
+            <Line options={options} data={temperature} />
+            <Line options={options} data={humidity} />
+            <Line options={options} data={pressure} />
+            <Line options={options} data={gas} />
           </div>
         </div>
       </div>

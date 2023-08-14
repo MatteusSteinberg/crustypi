@@ -5,13 +5,21 @@ import measurementsModel from '../../lib/models/measurements.model'
 
 import { NextApiRequest, NextApiResponse } from 'next'
 import Cors from 'cors'
+import { PipelineStage } from 'mongoose'
 
 
 const cors = Cors({
   methods: ['POST', 'GET', 'HEAD'],
 })
 
+export const config = {
+  api: {
+    responseLimit: false,
+  },
+}
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+
   await runMiddleware(req, res, cors)
   await connect()
   if (req.method === 'POST') {
@@ -25,6 +33,47 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
   if (req.method === 'GET') {
 
-    res.status(200).json({ name: 'John Doe' })
+    const timestampFrom = req.query.timestampFrom ? req.query.timestampFrom : null
+    const timestampTo = req.query.timestampTo ? req.query.timestampTo : null
+    const groupBy = req.query.groupBy ? req.query.groupBy : null
+
+    const aggreate: PipelineStage[] = [
+      {
+        $match: {
+          timestamp: {
+            $gte: timestampFrom ? new Date(Array.isArray(timestampFrom) ? timestampFrom[0] : timestampFrom) : new Date('1970-01-01'),
+            $lte: timestampTo ? new Date(Array.isArray(timestampTo) ? timestampTo[0] : timestampTo) : new Date()
+          }
+        }
+      },
+      {
+        $group: {
+          _id: {
+            $dateTrunc: {
+              date: "$timestamp",
+              unit: groupBy || 'day'
+            }
+          },
+          temperature: {
+            $avg: "$temperature"
+          },
+          humidity: {
+            $avg: "$humidity"
+          },
+          pressure: {
+            $avg: "$pressure"
+          },
+          gas: {
+            $avg: "$gas"
+          },
+        }
+      },
+      {
+        $sort: {
+          _id: 1
+        }
+      }
+    ]
+    res.status(200).json(await measurementsModel.aggregate(aggreate))
   }
 }
