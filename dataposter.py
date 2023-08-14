@@ -29,4 +29,6 @@ while True:
     url = apiUrl + '/api/measurements'
     jsonData = docs
 
+    print(docs)
+
     Thread(target=send_data, args=(url, docs, dt_string)).start()
