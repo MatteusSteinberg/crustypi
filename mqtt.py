@@ -17,7 +17,6 @@ class mqtt_client():
     def __init__(self):
       self.client = paho.Client()
       self.client.on_connect = on_connect
-      print(self.broker_address, self.port, self.username, self.password)
 
       self.client.username_pw_set(self.username, self.password)
 
@@ -26,15 +25,11 @@ class mqtt_client():
       self.client.loop_start()
 
     def close(self):
-        self.client.loop_stop()
+      self.client.loop_stop()
 
     def publish(self, topic, payload):
-        if self.client.is_connected():
-          self.client.publish(topic, json.dump(payload))
-          print("Websocket data sent")
-        else: 
-           self.client.connect(self.broker_address, self.port, 60)
-
-           if self.client.is_connected():
-              self.client.loop_start()
-              self.client.publish(topic, json.dump(payload))
+      if self.client.is_connected():
+        self.client.publish(topic, json.dumps(payload))
+        print("MQTT data sent")
+      else:
+        print("MQTT client not connected")
