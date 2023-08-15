@@ -74,6 +74,6 @@ while (True):
 
     insert_data(data)
 
-    Thread(target=mqtt.publish, args=("sensordata", data))
+    mqtt.publish("sensordata", data)
 
     
