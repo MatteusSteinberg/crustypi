@@ -38,6 +38,23 @@ const options = {
 export default function Home() {
   const [data, setData] = useState([])
   const [groupBy, setGroupBy] = useState("hour")
+
+  const timeFormat = () => {
+    switch (groupBy) {
+      case "month":
+        return 'ddd, hA'
+      case "week":
+          return 'ddd, hA'
+      case "day":
+        return 'ddd'
+      case "hour":
+        return 'ddd, hA'
+      case "minute":
+        return 'ddd, h:mmA'
+      case "second":
+        return 'ddd, h:mm:ssA'
+    }
+  }
   
   const getData = useCallback(async () => {
     await fetch(`/api/measurements?groupBy=${groupBy}`)
@@ -46,7 +63,7 @@ export default function Home() {
       .catch(err => console.log(err))
   }, [groupBy])
 
-  const labels = data.map((item: any) => moment(item._id).format('ddd, hA'));
+  const labels = data.map((item: any) => moment(item._id).format(timeFormat()));
 
   console.log(data)
 
@@ -113,12 +130,11 @@ export default function Home() {
         </div>
         <div>
           <select defaultValue={groupBy} onChange={(ev) => setGroupBy(ev.target.value)}>
-            <option value={"week"}>Week</option>
             <option value={"month"}>Month</option>
+            <option value={"week"}>Week</option>
             <option value={"day"}>Day</option>
             <option value={"hour"}>Hour</option>
             <option value={"minute"}>Minute</option>
-            <option value={"second"}>Second</option>
           </select>
         </div>
         <div className='content'>

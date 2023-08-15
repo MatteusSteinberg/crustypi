@@ -74,6 +74,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
       }
     ]
-    res.status(200).json(await measurementsModel.aggregate(aggreate))
+    res.status(200).json(await measurementsModel.aggregate(aggreate, { allowDiskUse: true, maxTimeMS: 120000 }))
   }
 }
