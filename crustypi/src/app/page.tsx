@@ -37,6 +37,7 @@ const options = {
 
 export default function Home() {
   const [data, setData] = useState([])
+  const [groupBy, setGroupBy] = useState("hour")
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -109,6 +110,16 @@ export default function Home() {
       <div className="container">
         <div className='header'>
           <h1>Crusty Pi</h1>
+        </div>
+        <div>
+          <select defaultValue={groupBy} onChange={(ev) => setGroupBy(ev.target.value)}>
+            <option value={"week"}>Week</option>
+            <option value={"month"}>Month</option>
+            <option value={"day"}>Day</option>
+            <option value={"hour"}>Hour</option>
+            <option value={"minute"}>Minute</option>
+            <option value={"second"}>Second</option>
+          </select>
         </div>
         <div className='content'>
           <div className='charts'>
