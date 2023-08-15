@@ -22,14 +22,13 @@ class mqtt_client():
 
       self.client.loop_start()
 
-      self.client.loop_stop()
-
     def close(self):
         self.client.loop_stop()
 
     def publish(self, topic, payload):
         if self.client.is_connected():
           self.client.publish(topic, json.dump(payload))
+          print("Websocket data sent")
         else: 
            self.client.connect(self.broker_address, self.port, 60)
 
