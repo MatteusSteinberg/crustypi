@@ -48,4 +48,9 @@ Afterwards, restart your system.
 
 Guide can be found here: https://roboticsbackend.com/control-arduino-with-python-and-pyfirmata-from-raspberry-pi/#Step_1_Run_StandardFirmata_on_your_Arduino_board
 
+
+### MQTT Broker
+
+`pip install paho-mqtt`
+
 ## API
