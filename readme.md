@@ -39,13 +39,18 @@ The databse is a sqlite dabtase which is default installed in python.
 A raspberry pi can only read digital signals. In order to read analog signals from analog sensors, we have to do a bit of extra work. <br />
 This is where the arduino comes in, which is able to read analog signals.
 
-By installing the Firmata example called "StandardFirmata" we can get the signals from an arduino board into our Python code. <br />
-`pip install pyfirmata` <br />
+By installing the Firmata example called "StandardFirmata" on the arduino, and installing analog sensors in the correct pins, we can get the signals from an arduino board into our Python code using Firmata. <br />
+Python's version for Firmata: `pip install pyfirmata` <br />
 
 After this you need to have hardware permission to use Serial on your raspberry pi, this can be done with following command:
 `sudo adduser $USER dialout` <br />
 Afterwards, restart your system.
 
 Guide can be found here: https://roboticsbackend.com/control-arduino-with-python-and-pyfirmata-from-raspberry-pi/#Step_1_Run_StandardFirmata_on_your_Arduino_board
+
+
+### MQTT Broker
+
+`pip install paho-mqtt`
 
 ## API

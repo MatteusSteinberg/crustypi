@@ -3,6 +3,7 @@ charset-normalizer==3.2.0
 dnspython==2.4.1
 idna==3.4
 numpy==1.25.2
+paho-mqtt==1.6.1
 Pillow==10.0.0
 pyFirmata==1.1.0
 pyserial==3.5
