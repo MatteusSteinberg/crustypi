@@ -53,4 +53,8 @@ Guide can be found here: https://roboticsbackend.com/control-arduino-with-python
 
 `pip install paho-mqtt`
 
+HiveMQ Broker credentials:
+*crustypi* <br />
+*``Crustyburger@123``*
+
 ## API

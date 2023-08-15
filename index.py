@@ -3,6 +3,10 @@ from datetime import datetime
 from insertion import insert_data, create_table
 import RPi.GPIO as GPIO
 from arduino import arduino_board
+import signal
+from mqtt import mqtt_client
+import paho.mqtt.client as paho
+from threading import Thread
 
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
@@ -18,6 +22,15 @@ currentlyDetecting = False
 create_table()
 
 arduino = arduino_board()
+
+mqtt = mqtt_client()
+
+# ON PROGRAM CLOSE START
+def on_shutdown():
+    mqtt.close()
+
+signal.signal(signal.SIGINT, on_shutdown)
+# ON PROGRAM CLOSE END
 
 while (True):
     now = datetime.now()
@@ -50,13 +63,17 @@ while (True):
 
     print(f"arduino.analogGasSensorValue: {analogGasSensorValue}")
 
-    insert_data({
+    data = {
         "timestamp": dt_string,
         "humidity": humidity,
         "temperature": temp,
         "pressure": pressure,
         "detectedMotion": motionDetected,
         "gas": analogGasSensorValue
-    })
+    }
+
+    insert_data(data)
+
+    Thread(target=mqtt.publish, args=("sensordata", data))
 
     
