@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -38,20 +38,13 @@ const options = {
 export default function Home() {
   const [data, setData] = useState([])
   const [groupBy, setGroupBy] = useState("hour")
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      getData()
-    }, 10000);
-    return () => clearInterval(interval);
-  }, [])
   
-  const getData = async () => {
-    await fetch('/api/measurements?groupBy=hour')
+  const getData = useCallback(async () => {
+    await fetch(`/api/measurements?groupBy=${groupBy}`)
       .then(res => res.json())
       .then(data => setData(data))
       .catch(err => console.log(err))
-  }
+  }, [groupBy])
 
   const labels = data.map((item: any) => moment(item._id).format('ddd, hA'));
 
@@ -104,6 +97,13 @@ export default function Home() {
       },
     ],
   }
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      getData()
+    }, 10000);
+    return () => clearInterval(interval);
+  }, [getData])
 
   return (
     <main>
