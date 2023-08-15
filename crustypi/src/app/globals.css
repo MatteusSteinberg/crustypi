@@ -110,8 +110,10 @@ a {
 .header {
   width: 100vw;
   height: 5rem;
-  background-color: white;
-  text-align: center;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .container {
@@ -121,7 +123,7 @@ a {
 
 .charts {
   display: grid;
-  height: 250px;
+  height: 23rem;
   grid-template-columns: 1fr 1fr;
   justify-items: center;
   row-gap: 5rem;
