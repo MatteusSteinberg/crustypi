@@ -65,54 +65,43 @@ export default function Home() {
 
   const labels = data.map((item: any) => moment(item._id).format(timeFormat()));
 
-  console.log(data)
+  const color: {[key: string]: {borderColor: string, backgroundColor: string}} = {
+    temperature: {
+      borderColor: 'rgb(255, 99, 132)',
+      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+    },
+    humidity: {
+      borderColor: 'rgb(54, 162, 235)',
+      backgroundColor: 'rgba(54, 162, 235, 0.5)',
+    },
+    pressure: {
+      borderColor: 'rgb(75, 192, 192)',
+      backgroundColor: 'rgba(75, 192, 192, 0.5)',
+    },
+    gas: {
+      borderColor: 'rgb(255, 205, 86)',
+      backgroundColor: 'rgba(255, 205, 86, 0.5)',
+    },
+  }
 
-  const temperature = {
-    labels,
-    datasets: [
-      {
-        label: 'Temperature',
-        data: data.map((item: any) => item.temperature),
-        borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+  const createChart = () => {
+    const chartElements = [];
+    const charts = data[0] ? Object.keys(data[0]).filter((item: string) => item !== "_id") : [];
+    for (const chart of charts) {
+      const generatedChart = {
+        labels,
+        datasets: [
+          {
+            label: chart.charAt(0).toUpperCase() + chart.slice(1),
+            data: data.map((item: any) => item[chart]),
+            borderColor: color[chart].borderColor,
+            backgroundColor: color[chart].backgroundColor,
+          },
+        ],
       }
-    ],
-  };
-
-  const humidity = {
-    labels,
-    datasets: [
-      {
-        label: 'Humidity',
-        data: data.map((item: any) => item.humidity),
-        borderColor: 'rgb(53, 162, 235)',
-        backgroundColor: 'rgba(53, 162, 235, 0.5)',
-      },
-    ],
-  }
-
-  const pressure = {
-    labels,
-    datasets: [
-      {
-        label: 'Pressure',
-        data: data.map((item: any) => item.pressure),
-        borderColor: 'rgb(75, 192, 192)',
-        backgroundColor: 'rgba(75, 192, 192, 0.5)',
-      },
-    ],
-  }
-
-  const gas = {
-    labels,
-    datasets: [
-      {
-        label: 'Gas',
-        data: data.map((item: any) => item.gas),
-        borderColor: 'rgb(255, 205, 86)',
-        backgroundColor: 'rgba(255, 205, 86, 0.5)',
-      },
-    ],
+      chartElements.push(<Line key={chart} data={generatedChart} options={options} />)
+    }
+    return chartElements;
   }
 
   useEffect(() => {
@@ -138,11 +127,8 @@ export default function Home() {
           </select>
         </div>
         <div className='content'>
-          <div className='charts'>
-            <Line options={options} data={temperature} />
-            <Line options={options} data={humidity} />
-            <Line options={options} data={pressure} />
-            <Line options={options} data={gas} />
+          <div className='charts'>   
+            {createChart()}
           </div>
         </div>
       </div>
