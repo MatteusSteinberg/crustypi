@@ -16,9 +16,12 @@ class mqtt_client():
 
     def __init__(self):
       self.client.on_connect = on_connect
+      print(self.broker_address, self.port, self.username, self.password)
 
       self.client.username_pw_set(self.username, self.password)
+      print("Set creds")
       self.client.connect(self.broker_address, self.port, 60)
+      print("Connect")
 
       self.client.loop_start()
 
