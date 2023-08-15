@@ -10,7 +10,7 @@ class mqtt_client():
     client = paho.Client()
 
     broker_address = config("MQTT_ADDRESS")
-    port = config("MQTT_PORT")
+    port = int(config("MQTT_PORT"))
     username = config("MQTT_USER")
     password = config("MQTT_PASSWORD")
 
