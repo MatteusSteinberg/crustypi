@@ -1,13 +1,13 @@
-import mqtt from 'mqtt';
+const mqtt = require("mqtt")
 import { useEffect, useRef } from 'react';
 
 const useMQTT = () => {
 
-  const clientRef = useRef<mqtt.MqttClient>()
+  const clientRef = useRef<any>()
 
   useEffect(() => {
     // Connect to the MQTT broker
-    var options: mqtt.IClientOptions = {
+    var options = {
       host: 'a91938236da5469ca7780ce25a489b8f.s2.eu.hivemq.cloud',
       port: 8883,
       protocol: 'mqtts',
@@ -17,9 +17,9 @@ const useMQTT = () => {
 
     clientRef.current = mqtt.connect(options)
 
-    clientRef.current.subscribe('sensordata');
+    clientRef.current?.subscribe('sensordata');
 
-    clientRef.current.on('message', (topic, message) => {
+    clientRef.current?.on('message', (topic: any, message: any) => {
       console.log(`Received message on topic '${topic}': ${message.toString()}`);
     })
 

@@ -14,7 +14,7 @@ import {
 import moment from 'moment';
 import { useCallback, useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
-import useMQTT from '../../lib/hooks/useMQTT';
+import useMQTT from '../hooks/useMQTT';
 
 ChartJS.register(
   CategoryScale,
