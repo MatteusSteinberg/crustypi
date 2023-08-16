@@ -17,7 +17,7 @@ const useMQTT = () => {
       rejectUnauthorized: false
     }
 
-    clientRef.current = mqtt.connect("tls://a91938236da5469ca7780ce25a489b8f.s2.eu.hivemq.cloud", {
+    clientRef.current = mqtt.connect("wss://a91938236da5469ca7780ce25a489b8f.s2.eu.hivemq.cloud", {
       ...options
     })
 
