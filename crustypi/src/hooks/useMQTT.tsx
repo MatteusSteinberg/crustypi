@@ -7,7 +7,7 @@ const useMQTT = () => {
 
   useEffect(() => {
     // Connect to the MQTT broker
-    var options: mqtt.IClientOptions = {
+    var options: any = {
       port: 8883,
       protocol: 'mqtts',
       clientId: `ui-${new Date().toISOString()}`,
@@ -17,31 +17,31 @@ const useMQTT = () => {
       rejectUnauthorized: false
     }
 
-    clientRef.current = mqtt.connect("wss://a91938236da5469ca7780ce25a489b8f.s2.eu.hivemq.cloud", {
+    let client = mqtt.connect("wss://a91938236da5469ca7780ce25a489b8f.s2.eu.hivemq.cloud", {
       ...options
     })
 
-    clientRef.current?.on("connect", (packet) => {
+    client.on("connect", (packet) => {
       console.log("Connected")
     })
 
-    clientRef.current?.on("disconnect", (packet) => {
+    client.on("disconnect", (packet) => {
       console.log("Disconnected")
     })
 
-    clientRef.current?.on("error", (err) => {
+    client.on("error", (err) => {
       console.error(err)
     })
 
-    clientRef.current?.subscribe('sensordata');
+    client.subscribe('sensordata');
 
-    clientRef.current?.on('message', (topic: any, message: any) => {
+    client.on('message', (topic: any, message: any) => {
       console.log(`Received message on topic '${topic}': ${message.toString()}`);
     })
 
     // Clean up the MQTT client on component unmount
     return () => {
-      clientRef.current?.end();
+      client.end();
     }
   }, [])
 
