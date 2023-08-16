@@ -1,21 +1,24 @@
-const mqtt = require("mqtt")
+import * as mqtt from "mqtt";
 import { useEffect, useRef } from 'react';
 
 const useMQTT = () => {
 
-  const clientRef = useRef<any>()
+  const clientRef = useRef<mqtt.MqttClient>()
 
   useEffect(() => {
     // Connect to the MQTT broker
-    var options = {
-      host: 'a91938236da5469ca7780ce25a489b8f.s2.eu.hivemq.cloud',
+    var options: mqtt.IClientOptions = {
       port: 8883,
       protocol: 'mqtts',
+      clientId: `ui-${new Date().toISOString()}`,
+      keepalive: 60,
       username: 'crustypi-ui',
       password: 'Crustyburger@123'
     }
 
-    clientRef.current = mqtt.connect(options)
+    clientRef.current = mqtt.connect("wss://a91938236da5469ca7780ce25a489b8f.s2.eu.hivemq.cloud", {
+      ...options
+    })
 
     clientRef.current?.subscribe('sensordata');
 
