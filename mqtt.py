@@ -20,6 +20,7 @@ class mqtt_client():
     def __init__(self):
       self.client = paho.Client()
       self.client.on_connect = on_connect
+      self.client.on_disconnect = self.on_disconnect
 
       self.client.tls_set(tls_version=ssl.PROTOCOL_TLS)  # Set the TLS version
 
@@ -28,6 +29,10 @@ class mqtt_client():
       self.client.connect(self.broker_address, self.port, 60)
 
       self.client.loop_start()
+
+
+    def on_disconnect(self):
+      print("Disconnected from MQTT")
 
     def close(self):
       print("Closed MQTT Connection")
