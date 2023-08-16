@@ -36,4 +36,6 @@ class mqtt_client():
     def publish(self, topic, payload):
       if self.client.is_connected():
         publishResult = self.client.publish(topic, json.dumps(payload))
+        if publishResult.is_published():
+           print("Publish result succesful")
         print("MQTT data sent", publishResult)
