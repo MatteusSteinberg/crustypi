@@ -8,7 +8,7 @@ const useMQTT = () => {
   useEffect(() => {
     // Connect to the MQTT broker
     var options: mqtt.IClientOptions = {
-      port: 8884,
+      port: 8883,
       protocol: 'wss',
       clientId: `ui-${new Date().toISOString()}`,
       keepalive: 60,
