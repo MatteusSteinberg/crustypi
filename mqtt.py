@@ -23,8 +23,6 @@ class mqtt_client():
 
       self.client.tls_set(tls_version=ssl.PROTOCOL_TLS)  # Set the TLS version
 
-      print(self.username, self.password)
-
       self.client.username_pw_set(self.username, self.password)
 
       self.client.connect(self.broker_address, self.port, 60)
@@ -36,5 +34,6 @@ class mqtt_client():
       self.client.loop_stop()
 
     def publish(self, topic, payload):
-      self.client.publish(topic, json.dumps(payload))
-      print("MQTT data sent")
+      if self.client.is_connected():
+        self.client.publish(topic, json.dumps(payload))
+        print("MQTT data sent")
