@@ -13,7 +13,8 @@ const useMQTT = () => {
       clientId: `ui-${new Date().toISOString()}`,
       keepalive: 60,
       username: 'crustypi-ui',
-      password: 'Crustyburger@123'
+      password: 'Crustyburger@123',
+      rejectUnauthorized: false
     }
 
     clientRef.current = mqtt.connect("wss://a91938236da5469ca7780ce25a489b8f.s2.eu.hivemq.cloud", {
