@@ -4,7 +4,10 @@ import json
 import ssl
 
 def on_connect(client, userdata, flags, rc):
-    print("Connected to MQTT Broker", rc)
+    if rc == 0:
+      print("Connected to MQTT Broker")
+    else:
+      print("Connection failed with code", rc)
 
 class mqtt_client():
     client = paho.Client()
@@ -34,5 +37,3 @@ class mqtt_client():
       if self.client.is_connected():
         self.client.publish(topic, json.dumps(payload))
         print("MQTT data sent")
-      else:
-        print("MQTT client not connected")
