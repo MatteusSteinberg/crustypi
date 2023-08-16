@@ -1,19 +1,20 @@
 "use client"
 
-import React, { useCallback, useEffect, useState } from 'react';
 import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
   BarElement,
-  PointElement,
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
   LineElement,
+  LinearScale,
+  PointElement,
   Title,
   Tooltip,
-  Legend,
 } from 'chart.js';
-import { Bar, Line } from 'react-chartjs-2';
 import moment from 'moment';
+import { useCallback, useEffect, useState } from 'react';
+import { Line } from 'react-chartjs-2';
+import useMQTT from '../../lib/hooks/useMQTT';
 
 ChartJS.register(
   CategoryScale,
@@ -39,12 +40,14 @@ export default function Home() {
   const [data, setData] = useState([])
   const [groupBy, setGroupBy] = useState("hour")
 
+  const { } = useMQTT()
+
   const timeFormat = () => {
     switch (groupBy) {
       case "month":
         return 'ddd, hA'
       case "week":
-          return 'ddd, hA'
+        return 'ddd, hA'
       case "day":
         return 'ddd'
       case "hour":
@@ -55,7 +58,7 @@ export default function Home() {
         return 'ddd, h:mm:ssA'
     }
   }
-  
+
   const getData = useCallback(async () => {
     await fetch(`/api/measurements?groupBy=${groupBy}`)
       .then(res => res.json())
@@ -65,7 +68,7 @@ export default function Home() {
 
   const labels = data.map((item: any) => moment(item._id).format(timeFormat()));
 
-  const color: {[key: string]: {borderColor: string, backgroundColor: string}} = {
+  const color: { [key: string]: { borderColor: string, backgroundColor: string } } = {
     temperature: {
       borderColor: 'rgb(255, 99, 132)',
       backgroundColor: 'rgba(255, 99, 132, 0.5)',
@@ -127,7 +130,7 @@ export default function Home() {
           </select>
         </div>
         <div className='content'>
-          <div className='charts'>   
+          <div className='charts'>
             {createChart()}
           </div>
         </div>

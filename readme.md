@@ -60,7 +60,7 @@ With: <br />
 Port: `8883`
 URL: `a91938236da5469ca7780ce25a489b8f.s2.eu.hivemq.cloud`
 
-*Subscriber*
+*Subscriber* <br />
 *``crustypi-ui``* <br />
 *``Crustyburger@123``*
 
