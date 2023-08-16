@@ -29,13 +29,12 @@ class mqtt_client():
 
       self.client.connect(self.broker_address, self.port, 60)
 
-      self.client.loop_forever()
+      self.client.loop_start()
 
     def close(self):
       print("Closed MQTT Connection")
       self.client.loop_stop()
 
     def publish(self, topic, payload):
-      if self.client.is_connected():
-        self.client.publish(topic, json.dumps(payload))
-        print("MQTT data sent")
+      self.client.publish(topic, json.dumps(payload))
+      print("MQTT data sent")
