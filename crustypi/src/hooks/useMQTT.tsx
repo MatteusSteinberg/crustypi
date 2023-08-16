@@ -20,6 +20,18 @@ const useMQTT = () => {
       ...options
     })
 
+    clientRef.current?.on("connect", (packet) => {
+      console.log("Connected")
+    })
+
+    clientRef.current?.on("disconnect", (packet) => {
+      console.log("Disconnected")
+    })
+
+    clientRef.current?.on("error", (err) => {
+      console.error(err)
+    })
+
     clientRef.current?.subscribe('sensordata');
 
     clientRef.current?.on('message', (topic: any, message: any) => {
