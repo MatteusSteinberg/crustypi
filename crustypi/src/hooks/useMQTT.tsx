@@ -7,9 +7,9 @@ const useMQTT = () => {
 
   useEffect(() => {
     // Connect to the MQTT broker
-    var options: any = {
+    var options: mqtt.IClientOptions = {
       port: 8884,
-      protocol: 'mqtts',
+      protocol: 'ws',
       clientId: `ui-${new Date().toISOString()}`,
       keepalive: 60,
       username: 'crustypi-ui',
