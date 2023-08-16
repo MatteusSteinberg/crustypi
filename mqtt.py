@@ -27,7 +27,7 @@ class mqtt_client():
 
       self.client.connect(self.broker_address, self.port, 60)
 
-      self.client.loop_start()
+      self.client.loop_forever()
 
     def close(self):
       print("Closed MQTT Connection")
