@@ -35,7 +35,7 @@ class mqtt_client():
     def on_disconnect(self):
       print("Disconnected from MQTT")
 
-    def on_publish(client, userdata, mid, properties=None):
+    def on_publish(self, client, userdata, mid, properties=None):
       print("mid: " + str(mid))
 
     def close(self):
