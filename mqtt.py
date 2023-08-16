@@ -39,8 +39,15 @@ class mqtt_client():
       self.client.loop_stop()
 
     def publish(self, topic, payload):
-      if self.client.is_connected():
-        publishResult = self.client.publish(topic, json.dumps(payload))
-        if publishResult.is_published():
-           print("Publish result succesful")
-        print("MQTT data sent", publishResult)
+        if self.client.is_connected():
+          publishResult = self.client.publish(topic, json.dumps(payload))
+          if publishResult.is_published():
+            print("Publish result successful")
+          else:
+            print("Publish result not successful")
+        else:
+          print("MQTT client not connected")
+
+
+
+
