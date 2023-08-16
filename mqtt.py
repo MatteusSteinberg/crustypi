@@ -1,7 +1,7 @@
-import time
 import paho.mqtt.client as paho
 from decouple import config
 import json
+import ssl
 
 def on_connect(client, userdata, flags, rc):
     print("Connected to MQTT Broker", rc)
@@ -17,6 +17,8 @@ class mqtt_client():
     def __init__(self):
       self.client = paho.Client()
       self.client.on_connect = on_connect
+
+      self.client.tls_set(tls_version=ssl.PROTOCOL_TLS)  # Set the TLS version
 
       self.client.username_pw_set(self.username, self.password)
 
