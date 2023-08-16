@@ -10,7 +10,7 @@ def on_connect(client, userdata, flags, rc):
       print("Connection failed with code", rc)
 
 class mqtt_client():
-    client = paho.Client(client_id="", userdata=None, protocol=paho.MQTTv5)
+    client = paho.Client(client_id="pi", protocol=paho.MQTTv5)
 
     broker_address = "a91938236da5469ca7780ce25a489b8f.s2.eu.hivemq.cloud"
     port = int(config("MQTT_PORT"))
