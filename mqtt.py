@@ -21,6 +21,7 @@ class mqtt_client():
       self.client = paho.Client()
       self.client.on_connect = on_connect
       self.client.on_disconnect = self.on_disconnect
+      self.client.on_publish = self.on_publish
 
       self.client.tls_set(tls_version=ssl.PROTOCOL_TLS)  # Set the TLS version
 
@@ -34,17 +35,16 @@ class mqtt_client():
     def on_disconnect(self):
       print("Disconnected from MQTT")
 
+    def on_publish(client, userdata, mid, properties=None):
+      print("mid: " + str(mid))
+
     def close(self):
       print("Closed MQTT Connection")
       self.client.loop_stop()
 
     def publish(self, topic, payload):
         if self.client.is_connected():
-          publishResult = self.client.publish(topic, json.dumps(payload))
-          if publishResult.is_published():
-            print("Publish result successful")
-          else:
-            print("Publish result not successful")
+          self.client.publish(topic, json.dumps(payload))
         else:
           print("MQTT client not connected")
 
