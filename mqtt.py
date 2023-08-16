@@ -23,6 +23,8 @@ class mqtt_client():
 
       self.client.tls_set(tls_version=ssl.PROTOCOL_TLS)  # Set the TLS version
 
+      print(self.username, self.password)
+
       self.client.username_pw_set(self.username, self.password)
 
       self.client.connect(self.broker_address, self.port, 60)
