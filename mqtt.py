@@ -25,6 +25,7 @@ class mqtt_client():
       self.client.loop_start()
 
     def close(self):
+      print("Closed MQTT Connection")
       self.client.loop_stop()
 
     def publish(self, topic, payload):
