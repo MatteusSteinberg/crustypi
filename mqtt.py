@@ -9,7 +9,7 @@ def on_connect(client, userdata, flags, rc):
 class mqtt_client():
     client = paho.Client()
 
-    broker_address = config("MQTT_ADDRESS")
+    broker_address = "a91938236da5469ca7780ce25a489b8f.s2.eu.hivemq.cloud"
     port = int(config("MQTT_PORT"))
     username = config("MQTT_USER")
     password = config("MQTT_PASSWORD")
