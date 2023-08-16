@@ -40,6 +40,8 @@ while (True):
         continue
     lastTime = dt_string
 
+    print(f"Timestamp: {dt_string}")
+
     # Percentage of relative humidity
     humidity = sense.get_humidity()
     # Current temperature in degrees Celsius
