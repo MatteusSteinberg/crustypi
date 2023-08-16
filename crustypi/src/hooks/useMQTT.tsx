@@ -9,7 +9,7 @@ const useMQTT = () => {
     // Connect to the MQTT broker
     var options: mqtt.IClientOptions = {
       port: 8884,
-      protocol: 'ws',
+      protocol: 'wss',
       clientId: `ui-${new Date().toISOString()}`,
       keepalive: 60,
       username: 'crustypi-ui',
