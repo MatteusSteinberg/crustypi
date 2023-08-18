@@ -75,4 +75,4 @@ If yarn is not installed run:
 *`yarn dev` <br />
 
 Diagram of infrastructure:
-![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
+![alt text](https://github.com/MatteusSteinberg/crustypi/blob/master/images/diagram.png?raw=true)
