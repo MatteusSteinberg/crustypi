@@ -8,16 +8,13 @@ const useMQTT = () => {
   useEffect(() => {
     // Connect to the MQTT broker
     var options: mqtt.IClientOptions = {
-      port: 8883,
-      protocol: 'mqtts',
-      clientId: `ui-${new Date().toISOString()}`,
-      keepalive: 60,
+      port: 8884,
+      protocol: 'wss',
       username: 'crustypi-ui',
-      password: 'Crustyburger@123',
-      rejectUnauthorized: false
+      password: 'Crustyburger@123'
     }
 
-    let client = mqtt.connect("wss://a91938236da5469ca7780ce25a489b8f.s2.eu.hivemq.cloud", {
+    let client = mqtt.connect("wss://a91938236da5469ca7780ce25a489b8f.s2.eu.hivemq.cloud:8884", {
       ...options
     })
 
