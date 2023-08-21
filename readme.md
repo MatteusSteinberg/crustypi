@@ -64,4 +64,14 @@ URL: `a91938236da5469ca7780ce25a489b8f.s2.eu.hivemq.cloud`
 *``crustypi-ui``* <br />
 *``Crustyburger@123``*
 
-## API
+## API & Client
+
+If yarn is not installed run:
+* `npm install yarn --global` <br />
+  Install nextjs and dependencies:
+* `yarn` <br />
+  Run Nextjs:
+* `yarn dev` <br />
+
+Diagram of infrastructure:
+![alt text](https://github.com/MatteusSteinberg/crustypi/blob/master/images/diagram.png?raw=true)
