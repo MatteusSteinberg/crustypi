@@ -14,6 +14,7 @@ def send_data(url, json, dt_string):
     result = post(url, json=json, headers={'Authorization': f'Bearer {token}'})
     print(f"Timestamp: {dt_string}")
     print(f"Data sent to {apiUrl}, status code: {result.status_code}")
+    delete_data()
 
 while True:
     time.sleep(10)
@@ -24,7 +25,6 @@ while True:
         continue
 
     docs = get_data()
-    delete_data()
 
     url = apiUrl + '/api/measurements'
     jsonData = docs
