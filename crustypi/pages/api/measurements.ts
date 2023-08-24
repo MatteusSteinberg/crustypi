@@ -3,9 +3,9 @@ import runMiddleware from '../../lib/middleware'
 
 import measurementsModel from '../../lib/models/measurements.model'
 
-import { NextApiRequest, NextApiResponse } from 'next'
 import Cors from 'cors'
 import { PipelineStage } from 'mongoose'
+import { NextApiRequest, NextApiResponse } from 'next'
 
 
 const cors = Cors({
@@ -33,19 +33,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
   if (req.method === 'GET') {
 
-    const timestampFrom = req.query.timestampFrom ? req.query.timestampFrom : null
-    const timestampTo = req.query.timestampTo ? req.query.timestampTo : null
+    const timestampFrom = req.query.timestampFrom ? Array.isArray(req.query.timestampFrom) ? req.query.timestampFrom[0] : req.query.timestampFrom : null
+    const timestampTo = req.query.timestampTo ? Array.isArray(req.query.timestampTo) ? req.query.timestampTo[0] : req.query.timestampTo : null
     const groupBy = req.query.groupBy ? req.query.groupBy : null
 
     const aggreate: PipelineStage[] = [
-      {
+      ...(!!timestampTo || !!timestampFrom ? [{
         $match: {
           timestamp: {
-            $gte: timestampFrom ? new Date(Array.isArray(timestampFrom) ? timestampFrom[0] : timestampFrom) : new Date('1970-01-01'),
-            $lte: timestampTo ? new Date(Array.isArray(timestampTo) ? timestampTo[0] : timestampTo) : new Date()
+            ...(!!timestampFrom ? { $gte: new Date(timestampFrom) } : {}),
+            ...(!!timestampTo ? { $lte: new Date(timestampTo) } : {})
           }
         }
-      },
+      }] : []),
       {
         $group: {
           _id: {
