@@ -73,5 +73,22 @@ If yarn is not installed run:
   Run Nextjs:
 * `yarn dev` <br />
 
+## Creating a MongoDB URI and ALLOW_KEY for Post Requests
+
+To create a MongoDB URI, follow these steps:
+
+1. Sign up for a free MongoDB Atlas account at https://www.mongodb.com/cloud/atlas/register.
+2. Create a new project and cluster.
+3. Click on "Connect" and select "Connect your application".
+4. Choose your driver and version, then copy the connection string.
+5. Replace `<password>` with your MongoDB Atlas password and `<dbname>` with the name of your database.
+6. Paste the string in your environment variables before processing the request.
+
+To create an ALLOW_KEY for post requests, follow these steps:
+
+1. Generate a random string of characters to use as your ALLOW_KEY.
+2. Add the ALLOW_KEY to your environment variables.
+3. In your code, check that the ALLOW_KEY in the request headers matches the ALLOW_KEY in your environment variables before processing the request.
+
 Diagram of infrastructure:
 ![alt text](https://github.com/MatteusSteinberg/crustypi/blob/master/images/diagram.png?raw=true)
